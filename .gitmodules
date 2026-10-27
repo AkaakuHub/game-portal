@@ -1,0 +1,3 @@
+[submodule "games/suikomanai"]
+	path = games/suikomanai
+	url = ../cosmic-go

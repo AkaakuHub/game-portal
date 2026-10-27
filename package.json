@@ -1,0 +1,27 @@
+{
+  "name": "game-portal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.ts",
+    "build": "node scripts/build.ts",
+    "preview": "vp preview",
+    "typecheck": "tsgo --noEmit",
+    "lint": "vp lint src shared scripts vite.config.ts",
+    "format": "vp fmt src shared scripts vite.config.ts index.html package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
+    "format:check": "vp fmt --check src shared scripts vite.config.ts index.html package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm --dir games/suikomanai check",
+    "prepare": "lefthook install"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "lefthook": "^2.0.0",
+    "vite-plus": "1.4.0"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "packageManager": "pnpm@11.1.1"
+}
