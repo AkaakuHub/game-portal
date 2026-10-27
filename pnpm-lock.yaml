@@ -24,7 +24,7 @@ importers:
         specifier: 1.4.0
         version: 1.4.0(@types/node@24.19.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(@vitest/ui@5.0.5(vitest@5.0.5))(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
 
-  games/suikomanai:
+  games/suikomanaide:
     dependencies:
       lucide:
         specifier: 0.577.0

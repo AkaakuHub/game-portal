@@ -7,10 +7,10 @@ interface Game {
 }
 export const games: readonly Game[] = [
   {
-    slug: "suikomanai",
+    slug: "suikomanaide",
     title: "#吸い込まないでっ",
-    thumbnail: "/thumbnails/suikomanai.webp",
-    directory: "games/suikomanai",
+    thumbnail: "/thumbnails/suikomanaide.webp",
+    directory: "games/suikomanaide",
     port: 4175,
   },
 ];
