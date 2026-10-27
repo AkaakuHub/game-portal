@@ -8,10 +8,10 @@
     "build": "node scripts/build.ts",
     "preview": "vp preview",
     "typecheck": "tsgo --noEmit",
-    "lint": "vp lint src shared scripts vite.config.ts",
-    "format": "vp fmt src shared scripts vite.config.ts index.html package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
-    "format:check": "vp fmt --check src shared scripts vite.config.ts index.html package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
-    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm --dir games/suikomanai check",
+    "lint": "vp lint apps shared scripts vite.config.ts",
+    "format": "vp fmt apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
+    "format:check": "vp fmt --check apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
+    "check": "node scripts/check.ts",
     "prepare": "lefthook install"
   },
   "devDependencies": {

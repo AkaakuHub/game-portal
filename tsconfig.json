@@ -13,5 +13,5 @@
     "skipLibCheck": true,
     "types": ["node", "vite-plus/client"]
   },
-  "include": ["src", "shared", "scripts", "vite.config.ts"]
+  "include": ["apps", "shared", "scripts", "vite.config.ts"]
 }

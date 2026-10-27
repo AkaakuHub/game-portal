@@ -1,9 +1,9 @@
-import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
 import { games } from "../shared/games.ts";
+import { run } from "./lib/run.ts";
 
 const root = resolve(import.meta.dirname, "..");
-const tasks = [
+run([
   { cwd: root, args: ["exec", "vp", "build"] },
   ...games.map((game) => ({
     cwd: resolve(root, game.directory),
@@ -18,9 +18,4 @@ const tasks = [
       "--emptyOutDir",
     ],
   })),
-];
-for (const task of tasks) {
-  const result = spawnSync("pnpm", task.args, { cwd: task.cwd, stdio: "inherit" });
-  if (result.error) throw result.error;
-  if (result.status !== 0) process.exit(result.status ?? 1);
-}
+]);

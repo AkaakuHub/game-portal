@@ -1,5 +1,5 @@
 import "./styles/portal.css";
-import { games } from "../shared/games";
+import { games } from "../../../shared/games";
 
 const list = document.querySelector("#games");
 if (!list) throw new Error("ゲーム一覧を表示できません。");

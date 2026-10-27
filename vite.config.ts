@@ -1,7 +1,12 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vite-plus";
 import { games } from "./shared/games";
 
+const root = import.meta.dirname;
+
 export default defineConfig({
+  root: resolve(root, "apps/portal"),
+  build: { outDir: resolve(root, "dist"), emptyOutDir: true },
   server: {
     host: "127.0.0.1",
     port: 4174,
