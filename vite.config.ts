@@ -6,8 +6,19 @@ const root = import.meta.dirname;
 
 export default defineConfig({
   root: resolve(root, "apps/portal"),
-  build: { outDir: resolve(root, "dist"), emptyOutDir: true },
+  build: {
+    outDir: resolve(root, "dist"),
+    emptyOutDir: true,
+    rolldownOptions: {
+      input: {
+        index: resolve(root, "apps/portal/index.html"),
+        privacy: resolve(root, "apps/portal/privacy/index.html"),
+        contact: resolve(root, "apps/portal/contact/index.html"),
+      },
+    },
+  },
   server: {
+    allowedHosts: ["vcn-tokyo-main.tail4c0963.ts.net"],
     host: "127.0.0.1",
     port: 4174,
     strictPort: true,

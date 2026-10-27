@@ -1,0 +1,13 @@
+[Unit]
+Description=ゲームポータルの開発サーバー
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/dev/AkaakuHub/game-portal
+Environment=PATH=/home/ubuntu/.local/share/mise/installs/node/24.22.1/bin:/home/ubuntu/.local/share/pnpm/bin:/home/ubuntu/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/ubuntu/.local/bin/rtk proxy /home/ubuntu/.local/share/pnpm/bin/pnpm dev --host 100.77.108.76 --port 4173 --strictPort
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

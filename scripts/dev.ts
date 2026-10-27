@@ -4,7 +4,7 @@ import { games } from "../shared/games.ts";
 
 const root = resolve(import.meta.dirname, "..");
 const tasks = [
-  { cwd: root, args: ["exec", "vp", "dev"] },
+  { cwd: root, args: ["exec", "vp", "dev", ...process.argv.slice(2)] },
   ...games.map((game) => ({
     cwd: resolve(root, game.directory),
     args: [
