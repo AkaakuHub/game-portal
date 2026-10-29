@@ -1,17 +1,18 @@
 import { games } from "./games.ts";
 
 export const site = {
-  name: "ゲームの遊び場",
+  name: "あかあくの遊び場",
   origin: "https://game.akaaku.net",
+  themeColor: "#08141f",
   measurementId: "G-JFYR362R3W",
 };
 
 export const pages = [
   {
     path: "/",
-    title: "ゲームの遊び場｜無料ブラウザゲーム",
+    title: "あかあくの遊び場｜無料ブラウザゲーム",
     description:
-      "ダウンロード不要で遊べる無料ブラウザゲームを集めたゲームの遊び場。気になるゲームを選んで、すぐに楽しめます。",
+      "ダウンロード不要で遊べる無料ブラウザゲームを集めたあかあくの遊び場。気になるゲームを選んで、すぐに楽しめます。",
   },
   ...games.map((game) => ({
     path: `/${game.slug}/`,
@@ -26,7 +27,7 @@ export const pages = [
   {
     path: "/contact/",
     title: `お問い合わせ | ${site.name}`,
-    description: "ゲームの遊び場へのお問い合わせ窓口です。",
+    description: "あかあくの遊び場へのお問い合わせ窓口です。",
   },
 ];
 
@@ -45,4 +46,8 @@ export function gameListHtml(): string {
         `<li><a class="game" href="/${game.slug}/"><img src="${game.thumbnail}" alt="" width="960" height="540" decoding="async"><span>${escapeHtml(game.title)}</span></a></li>`,
     )
     .join("");
+}
+
+export function socialImagePath(path: string): string {
+  return `/og/${path === "/" ? "index" : path.slice(1, -1)}.png`;
 }

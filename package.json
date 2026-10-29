@@ -16,6 +16,7 @@
     "deploy:worker": "wrangler deploy"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^24.0.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "lefthook": "^2.0.0",
