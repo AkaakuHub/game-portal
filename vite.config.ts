@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite-plus";
 import { games } from "./shared/games";
-import { gameListHtml } from "./shared/site.ts";
+import { gameListHtml, gameNavigationScript } from "./shared/site.ts";
 
 const root = import.meta.dirname;
 
@@ -19,10 +19,17 @@ export default defineConfig({
     outDir: resolve(root, "dist"),
     emptyOutDir: true,
     rolldownOptions: {
+      output: {
+        entryFileNames: (chunk) =>
+          chunk.name === "gameNavigation"
+            ? gameNavigationScript.slice(1)
+            : "assets/[name]-[hash].js",
+      },
       input: {
         index: resolve(root, "apps/portal/index.html"),
         privacy: resolve(root, "apps/portal/privacy/index.html"),
         contact: resolve(root, "apps/portal/contact/index.html"),
+        gameNavigation: resolve(root, "apps/portal/src/gameNavigation.ts"),
       },
     },
   },

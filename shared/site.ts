@@ -51,3 +51,5 @@ export function gameListHtml(): string {
 export function socialImagePath(path: string): string {
   return `/og/${path === "/" ? "index" : path.slice(1, -1)}.png`;
 }
+
+export const gameNavigationScript = "/assets/game-navigation.js";

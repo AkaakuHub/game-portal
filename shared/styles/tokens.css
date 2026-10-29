@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   font-family: system-ui, sans-serif;
   color-scheme: dark;
   --background: #08141f;

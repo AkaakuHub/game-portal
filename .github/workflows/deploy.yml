@@ -3,6 +3,22 @@ name: Deploy
 on:
   push:
     branches: [main]
+    paths:
+      - "apps/**"
+      - "assets/**"
+      - "shared/**"
+      - "scripts/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.json"
+      - "vite.config.ts"
+      - "wrangler.jsonc"
+      - ".gitmodules"
+      - ".github/workflows/deploy.yml"
+      - "!**/*.md"
+      - "!**/*.test.*"
+      - "!**/*.spec.*"
   workflow_dispatch:
   workflow_call:
     secrets:
@@ -14,7 +30,7 @@ permissions:
 
 concurrency:
   group: production
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -27,17 +43,23 @@ jobs:
           ref: main
           submodules: recursive
           persist-credentials: false
-      - name: Update games to main
-        run: |
-          git submodule update --init --remote --checkout -- games/suikomanaide games/star-getter
-          git submodule update --init --recursive
-          git submodule status --recursive
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
-        with:
-          node-version: 24.22.1
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413
         with:
           version: 11.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24.22.1
+          cache: pnpm
+      - name: Update registered games
+        run: node scripts/updateGames.ts
+      - name: Compute game build key
+        id: game-key
+        run: echo "key=$(node scripts/buildCache.ts)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: .build
+          key: game-builds-${{ runner.os }}-${{ steps.game-key.outputs.key }}
+          restore-keys: game-builds-${{ runner.os }}-
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm deploy:worker

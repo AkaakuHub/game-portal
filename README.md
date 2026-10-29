@@ -53,3 +53,17 @@ favicon・Apple Touch Icon・各ページのOGP画像は共通のSVGと日本語
 CloudflareのGit連携は併用しません。
 各repositoryのActionsには`CLOUDFLARE_API_TOKEN`のsecretと`CLOUDFLARE_ACCOUNT_ID`のvariableを設定します。
 SSH鍵とrepositoryへの書き込み権限は使用しません。
+
+ドキュメント・テストだけの変更やポータルのsubmodule参照だけの更新では、配信を起動しません。
+CIではゲームごとの配信入力からビルドを識別し、変更のないゲームのビルド結果を再利用します。
+ポータルだけを更新した場合も、ゲームの再ビルドは行いません。
+
+## ゲームを追加する
+
+ゲームを`games/`へsubmoduleとして追加し、`shared/games.ts`へ登録します。
+一覧・開発用プロキシ・ビルド・キャッシュ・SEO・OGP・サイトメニューは、この登録情報から適用します。
+ゲーム側のActionsは共通の`deploy.yml`を呼び出します。
+
+サイトメニューはポータルが各ゲームへ共通で組み込みます。
+ゲーム側は`portal-menu-open`で一時停止し、`portal-menu-close`で元の状態へ戻します。
+準備ができた時点で`portal-menu-ready`を通知すると、開いているメニューの状態を受け取れます。

@@ -1,7 +1,14 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { games } from "../../shared/games.ts";
 import { publishGraphics } from "./graphics.ts";
-import { escapeHtml, pages, site, socialImagePath } from "../../shared/site.ts";
+import {
+  escapeHtml,
+  pages,
+  site,
+  socialImagePath,
+  gameNavigationScript,
+} from "../../shared/site.ts";
 
 export function publishPages(directory: string): void {
   publishGraphics(directory);
@@ -36,6 +43,9 @@ export function publishPages(directory: string): void {
       `<script async src="https://www.googletagmanager.com/gtag/js?id=${site.measurementId}"></script>`,
       `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.measurementId}');</script>`,
     ];
+    if (games.some((game) => page.path === `/${game.slug}/`)) {
+      metadata.push(`<script type="module" src="${gameNavigationScript}"></script>`);
+    }
     if (page.path === "/") {
       metadata.push(
         `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.origin + "/", inLanguage: "ja" })}</script>`,
