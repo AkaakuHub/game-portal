@@ -13,7 +13,8 @@
     "format:check": "vp fmt --check apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md wrangler.jsonc .github/workflows",
     "check": "node scripts/check.ts",
     "prepare": "lefthook install",
-    "deploy:worker": "wrangler deploy"
+    "deploy:worker": "wrangler deploy",
+    "games:check": "node scripts/validateGames.ts"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",

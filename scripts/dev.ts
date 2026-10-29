@@ -1,8 +1,10 @@
+import { validateGames } from "./lib/validateGames.ts";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
 import { games } from "../shared/games.ts";
 
 const root = resolve(import.meta.dirname, "..");
+validateGames(root);
 const tasks = [
   { cwd: root, args: ["exec", "vp", "dev", ...process.argv.slice(2)] },
   ...games.map((game) => ({
