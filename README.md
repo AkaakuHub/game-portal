@@ -46,9 +46,10 @@ favicon・Apple Touch Icon・各ページのOGP画像は共通のSVGと日本語
 
 ## 自動反映
 
-ポータルの`main`へのpushをGitHub Actionsが検査し、Cloudflare Workersへデプロイします。
-各ゲームの`main`へのpushでは、共通の`sync-game.yml`がポータルのsubmodule参照を更新します。
-その更新をポータルのActionsが受け取り、両ゲームをまとめて配信します。
+ポータルと各ゲームの`main`へのpushから、共通の`deploy.yml`を呼び出します。
+両ゲームの最新の`main`と、そのcommitが参照する入れ子のsubmoduleを取得し、検査後にCloudflare Workersへデプロイします。
+配信したcommitはActionsのログに記録されます。
 
 CloudflareのGit連携は併用しません。
-Cloudflareの認証情報はポータルのActionsに設定し、ゲーム側にはポータル専用のdeploy keyだけを設定します。
+各repositoryのActionsには`CLOUDFLARE_API_TOKEN`のsecretと`CLOUDFLARE_ACCOUNT_ID`のvariableを設定します。
+SSH鍵とrepositoryへの書き込み権限は使用しません。

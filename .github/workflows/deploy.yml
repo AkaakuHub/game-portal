@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: true
 
 permissions:
   contents: read
@@ -19,8 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          repository: AkaakuHub/game-portal
+          ref: main
           submodules: recursive
           persist-credentials: false
+      - name: Update games to main
+        run: |
+          git submodule update --init --remote --checkout -- games/suikomanaide games/star-getter
+          git submodule update --init --recursive
+          git submodule status --recursive
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24.22.1
