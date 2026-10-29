@@ -3,4 +3,6 @@ packages:
 overrides:
   vite: npm:@voidzero-dev/vite-plus-core@1.4.0
 allowBuilds:
+  esbuild: true
+  workerd: true
   lefthook: true
