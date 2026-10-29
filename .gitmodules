@@ -1,3 +1,6 @@
 [submodule "games/suikomanaide"]
 	path = games/suikomanaide
 	url = https://github.com/AkaakuHub/suikomanaide.git
+[submodule "games/star-getter"]
+	path = games/star-getter
+	url = https://github.com/AkaakuHub/star-getter.git
