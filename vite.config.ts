@@ -1,11 +1,20 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite-plus";
 import { games } from "./shared/games";
+import { gameListHtml } from "./shared/site.ts";
 
 const root = import.meta.dirname;
 
 export default defineConfig({
   root: resolve(root, "apps/portal"),
+  plugins: [
+    {
+      name: "portal-game-list",
+      transformIndexHtml(html) {
+        return html.replace('<ul id="games"></ul>', `<ul id="games">${gameListHtml()}</ul>`);
+      },
+    },
+  ],
   build: {
     outDir: resolve(root, "dist"),
     emptyOutDir: true,

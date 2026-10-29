@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { games } from "../shared/games.ts";
 import { run } from "./lib/run.ts";
+import { publishPages } from "./lib/publishPages.ts";
 
 const root = resolve(import.meta.dirname, "..");
 run([
@@ -19,3 +20,5 @@ run([
     ],
   })),
 ]);
+
+publishPages(resolve(root, "dist"));
