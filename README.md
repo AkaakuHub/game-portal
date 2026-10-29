@@ -25,3 +25,19 @@ pnpm build
 ```
 
 ビルド結果は`dist/`へ出力します。連絡先は`contact@akaaku.net`です。
+
+## Cloudflare Workersへの配信
+
+- `https://game.akaaku.net/`：ゲーム一覧
+- `https://game.akaaku.net/suikomanaide/`：#吸い込まないでっ
+- `https://game.akaaku.net/star-getter/`：ラブゲッター
+
+`akaaku.net`を管理するCloudflareアカウントで認証してから実行します。
+APIトークンを使う場合は`CLOUDFLARE_API_TOKEN`を環境変数に設定します。
+
+```sh
+pnpm deploy:worker
+```
+
+ポータルと両ゲームをビルドし、1つのWorkerから静的ファイルを配信します。
+カスタムドメインは`wrangler.jsonc`で管理します。

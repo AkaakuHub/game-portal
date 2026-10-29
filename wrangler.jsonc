@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "game-portal",
+  "compatibility_date": "2026-10-30",
+  "workers_dev": false,
+  "preview_urls": false,
+  "build": { "command": "pnpm build" },
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page",
+  },
+  "routes": [{ "pattern": "game.akaaku.net", "custom_domain": true }],
+}

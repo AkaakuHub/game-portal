@@ -9,16 +9,18 @@
     "preview": "vp preview",
     "typecheck": "tsgo --noEmit",
     "lint": "vp lint apps shared scripts vite.config.ts",
-    "format": "vp fmt apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
-    "format:check": "vp fmt --check apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md",
+    "format": "vp fmt apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md wrangler.jsonc",
+    "format:check": "vp fmt --check apps shared scripts vite.config.ts package.json tsconfig.json pnpm-workspace.yaml lefthook.yml README.md wrangler.jsonc",
     "check": "node scripts/check.ts",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "deploy:worker": "wrangler deploy"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "lefthook": "^2.0.0",
-    "vite-plus": "1.4.0"
+    "vite-plus": "1.4.0",
+    "wrangler": "4.152.0"
   },
   "engines": {
     "node": ">=22.18"
