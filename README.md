@@ -3,7 +3,8 @@
 サムネイル付きのゲーム一覧と、プライバシーポリシー・お問い合わせをまとめるサイトです。
 
 - `apps/portal/`：ポータル画面
-- `games/suikomanaide/`：ゲームのGitサブモジュール
+- `games/suikomanaide/`：#吸い込まないでっのGitサブモジュール
+- `games/star-getter/`：star-getterのGitサブモジュール
 - `shared/`：ゲーム登録情報と共通スタイル
 - `scripts/`：開発・検査・ビルド
 - `ops/systemd/`：開発サーバーのサービス定義

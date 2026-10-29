@@ -13,4 +13,11 @@ export const games: readonly Game[] = [
     directory: "games/suikomanaide",
     port: 4175,
   },
+  {
+    slug: "star-getter",
+    title: "star-getter",
+    thumbnail: "/thumbnails/star-getter.png",
+    directory: "games/star-getter",
+    port: 4176,
+  },
 ];
