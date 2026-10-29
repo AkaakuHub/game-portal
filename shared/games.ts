@@ -15,7 +15,7 @@ export const games: readonly Game[] = [
   },
   {
     slug: "star-getter",
-    title: "star-getter",
+    title: "ラブゲッター",
     thumbnail: "/thumbnails/star-getter.png",
     directory: "games/star-getter",
     port: 4176,

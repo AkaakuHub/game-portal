@@ -4,7 +4,7 @@
 
 - `apps/portal/`：ポータル画面
 - `games/suikomanaide/`：#吸い込まないでっのGitサブモジュール
-- `games/star-getter/`：star-getterのGitサブモジュール
+- `games/star-getter/`：ラブゲッターのGitサブモジュール
 - `shared/`：ゲーム登録情報と共通スタイル
 - `scripts/`：開発・検査・ビルド
 - `ops/systemd/`：開発サーバーのサービス定義
