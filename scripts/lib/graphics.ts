@@ -36,7 +36,10 @@ export function publishGraphics(directory: string): void {
       </g>
     </svg>`;
     const image = new Resvg(svg, {
-      font: { loadSystemFonts: false, fontFiles: [resolve(root, "assets/fonts/NotoSansJP.ttf")] },
+      font: {
+        loadSystemFonts: false,
+        fontFiles: [resolve(root, "assets/fonts/NotoSansJP-Bold.otf")],
+      },
     })
       .render()
       .asPng();

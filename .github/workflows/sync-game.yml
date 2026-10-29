@@ -1,0 +1,47 @@
+name: Sync game
+
+on:
+  workflow_call:
+    inputs:
+      game:
+        required: true
+        type: string
+      revision:
+        required: true
+        type: string
+    secrets:
+      deploy_key:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: AkaakuHub/game-portal
+          ref: main
+          fetch-depth: 0
+          ssh-key: ${{ secrets.deploy_key }}
+      - name: Update game revision
+        env:
+          GAME_SLUG: ${{ inputs.game }}
+          GAME_REVISION: ${{ inputs.revision }}
+        run: |
+          [[ "$GAME_SLUG" =~ ^[a-z0-9-]+$ ]]
+          [[ "$GAME_REVISION" =~ ^[a-f0-9]{40}$ ]]
+          test "$(git ls-files --stage -- "games/$GAME_SLUG" | cut -d ' ' -f 1)" = 160000
+          git update-index --cacheinfo "160000,$GAME_REVISION,games/$GAME_SLUG"
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "${GAME_SLUG}の更新を自動反映"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1

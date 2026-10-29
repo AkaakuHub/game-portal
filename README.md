@@ -43,3 +43,12 @@ pnpm deploy:worker
 カスタムドメインは`wrangler.jsonc`で管理します。
 
 favicon・Apple Touch Icon・各ページのOGP画像は共通のSVGと日本語フォントから生成します。
+
+## 自動反映
+
+ポータルの`main`へのpushをGitHub Actionsが検査し、Cloudflare Workersへデプロイします。
+各ゲームの`main`へのpushでは、共通の`sync-game.yml`がポータルのsubmodule参照を更新します。
+その更新をポータルのActionsが受け取り、両ゲームをまとめて配信します。
+
+CloudflareのGit連携は併用しません。
+Cloudflareの認証情報はポータルのActionsに設定し、ゲーム側にはポータル専用のdeploy keyだけを設定します。
